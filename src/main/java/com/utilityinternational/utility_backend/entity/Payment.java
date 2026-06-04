@@ -1,5 +1,6 @@
 package com.utilityinternational.utility_backend.entity;
 
+import com.utilityinternational.utility_backend.enums.PaymentMethod;
 import com.utilityinternational.utility_backend.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,6 +24,10 @@ public class Payment extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PaymentMethod paymentMethod;
 
     @ManyToOne
     @JoinColumn(name = "bill_id", nullable = false)

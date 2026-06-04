@@ -1,7 +1,7 @@
 package com.utilityinternational.utility_backend.enums;
 
 public enum DisputeStatus {
-    OPEN,
+    PENDING,
     UNDER_REVIEW,
     RESOLVED,
     REJECTED

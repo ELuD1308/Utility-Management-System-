@@ -23,10 +23,35 @@ public class Customer extends BaseEntity {
     private String fullName;
 
     @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    private String phoneNumber;
+
+    private String accountNumber;
+
+    private String address;
+
+    private String city;
+
+    private String state;
+
+    private String postalCode;
+
+    @ManyToOne
+    @JoinColumn(name = "current_tariff_id")
+    private Tariff currentTariff;
 
     private boolean accountLocked;
 
@@ -46,4 +71,8 @@ public class Customer extends BaseEntity {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @Builder.Default
     private Set<Notification> notifications = new HashSet<>();
+
+    public Customer getCustomer() {
+        return this;
+    }
 }

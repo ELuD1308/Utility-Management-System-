@@ -20,9 +20,22 @@ public class Tariff extends BaseEntity {
     @Column(nullable = false)
     private String tariffName;
 
+    @Column(unique = true)
+    private String planCode;
+
+    private String planName;
+
+    private String description;
+
     @Enumerated(EnumType.STRING)
     private UtilityType utilityType;
 
     @Column(nullable = false)
     private Double ratePerUnit;
+
+    private Double monthlyFixedCharge;
+
+    private Integer includedUnits;
+
+    private boolean active;
 }
