@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Utility International</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/web/dashboard" class="nav-logo">Utility International</a>
+            <div class="nav-menu">
+                <a href="/web/profile" class="nav-link">Profile</a>
+                <a href="/web/bills" class="nav-link">Bills</a>
+                <a href="/web/payments" class="nav-link">Payments</a>
+                <button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard-section">
+            <h2>Welcome!</h2>
+            <div id="profileCard" class="card">
+                <h3>Account Summary</h3>
+                <div id="profileContent">
+                    <p>Loading profile...</p>
+                </div>
+            </div>
+
+            <div id="statsCards" class="stats-row">
+                <div class="stat-card">
+                    <h4>Outstanding Balance</h4>
+                    <p id="outstandingBalance" class="stat-value">--</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Recent Bills</h4>
+                    <p id="recentBillsCount" class="stat-value">--</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Total Payments</h4>
+                    <p id="totalPayments" class="stat-value">--</p>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="/web/bills" class="btn btn-primary">View All Bills</a>
+                <a href="/web/payments" class="btn btn-success">Make Payment</a>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/api.js}"></script>
+    <script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

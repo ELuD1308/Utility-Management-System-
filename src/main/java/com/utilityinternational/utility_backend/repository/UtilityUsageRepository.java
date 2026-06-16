@@ -11,7 +11,7 @@ import java.util.List;
 public interface UtilityUsageRepository
         extends JpaRepository<UtilityUsage, Long> {
 
-    Page<UtilityUsage> findByCustomerIdOrderByReadingDateDesc(Long customerId, Pageable pageable);
+    Page<UtilityUsage> findByCustomerIdOrderByUsageDateDesc(Long customerId, Pageable pageable);
 
     List<UtilityUsage> findByCustomerId(Long customerId);
 

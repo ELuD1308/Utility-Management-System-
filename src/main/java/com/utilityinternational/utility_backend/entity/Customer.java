@@ -23,20 +23,11 @@ public class Customer extends BaseEntity {
     private String fullName;
 
     @Column(nullable = false, unique = true)
-    private String username;
-
-    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
-
+   
     private String phoneNumber;
 
     private String accountNumber;

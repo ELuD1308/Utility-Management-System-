@@ -19,7 +19,7 @@ public class UtilityUsage extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate readingDate;
+    private LocalDate usageDate;
 
     private Integer unitsConsumed;
 

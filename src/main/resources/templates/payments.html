@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment - Utility International</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/web/dashboard" class="nav-logo">Utility International</a>
+            <div class="nav-menu">
+                <a href="/web/profile" class="nav-link">Profile</a>
+                <a href="/web/bills" class="nav-link">Bills</a>
+                <a href="/web/payments" class="nav-link active">Payments</a>
+                <button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Make Payment</h2>
+        </div>
+
+        <div id="message" class="alert alert-error" style="display:none;"></div>
+        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+
+        <div class="form-container">
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="billId">Select Bill:</label>
+                    <select id="billId" name="billId" required>
+                        <option value="">Loading bills...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Bill Details:</label>
+                    <div id="billDetails" class="info-box">
+                        <p>Select a bill to see details</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method:</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="direct-debit">Direct Debit</option>
+                        <option value="standing-order">Standing Order</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-block">Process Payment</button>
+            </form>
+        </div>
+
+        <div id="paymentHistory" class="card" style="margin-top: 40px;">
+            <h3>Payment History</h3>
+            <div id="historyContainer">
+                <p>Loading payment history...</p>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/api.js}"></script>
+    <script th:src="@{/js/payments.js}"></script>
+</body>
+</html>

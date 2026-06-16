@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import io.jsonwebtoken.Jwts;
@@ -15,6 +17,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import java.security.Key;
 
 @Component
 @Slf4j
@@ -29,12 +32,12 @@ public class JwtUtils {
     @Value("${app.jwt.refresh-expiration-ms}")
     private int jwtRefreshExpirationMs;
 
-    private SecretKey key() {
-        return Keys.hmacShaKeyFor(
-                Decoders.BASE64.decode(jwtSecret)
-        );
+    private Key getSigningKey() {
+        // This converts your string into the secure byte array required by jjwt
+        byte[] keyBytes = this.jwtSecret.getBytes(StandardCharsets.UTF_8);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
-
+    
     public String generateJwtToken(Authentication authentication) {
 
         UserDetails userPrincipal =
@@ -62,14 +65,14 @@ public class JwtUtils {
             .setSubject(subject)
             .setIssuedAt(new Date())
             .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
-            .signWith(key())
+            .signWith(getSigningKey())
             .compact();
     }
 
     public String getUsernameFromJwtToken(String token) {
 
         return Jwts.parserBuilder()
-            .setSigningKey(key())
+            .setSigningKey(getSigningKey())
             .build()
             .parseClaimsJws(token)
             .getBody()
@@ -81,7 +84,7 @@ public class JwtUtils {
         try {
 
                 Jwts.parserBuilder()
-                    .setSigningKey(key())
+                    .setSigningKey(getSigningKey())
                     .build()
                     .parseClaimsJws(authToken);
 

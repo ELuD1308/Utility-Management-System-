@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Page<UtilityUsageResponse> getMyUsageHistory(Pageable pageable) {
         Customer customer = resolveCurrentCustomer();
         return utilityUsageRepository
-            .findByCustomerIdOrderByReadingDateDesc(customer.getId(), pageable)
+            .findByCustomerIdOrderByUsageDateDesc(customer.getId(), pageable)
             .map(this::mapToUsageResponse);
     }
 
@@ -86,11 +86,8 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = c.getCustomer();
         return CustomerProfileResponse.builder()
             .customerId(c.getId())
-            .userId(c.getId())
-            .username(c.getUsername())
             .email(c.getEmail())
-            .firstName(c.getFirstName())
-            .lastName(c.getLastName())
+            .fullName(c.getFullName())
             .phoneNumber(c.getPhoneNumber())
             .accountNumber(c.getAccountNumber())
             .address(c.getAddress())
@@ -124,7 +121,7 @@ public class CustomerServiceImpl implements CustomerService {
     private UtilityUsageResponse mapToUsageResponse(UtilityUsage u) {
         return UtilityUsageResponse.builder()
             .id(u.getId())
-            .readingDate(u.getReadingDate())
+            .usageDate(u.getUsageDate())
             .unitsConsumed(u.getUnitsConsumed())
             .meterReadingStart(u.getMeterReadingStart())
             .meterReadingEnd(u.getMeterReadingEnd())

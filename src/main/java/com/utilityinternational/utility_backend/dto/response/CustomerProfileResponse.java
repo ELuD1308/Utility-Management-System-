@@ -14,11 +14,8 @@ import java.time.LocalDateTime;
 public class CustomerProfileResponse {
 
     private Long customerId;
-    private Long userId;
-    private String username;
+    private String fullName;
     private String email;
-    private String firstName;
-    private String lastName;
     private String phoneNumber;
     private String accountNumber;
     private String address;

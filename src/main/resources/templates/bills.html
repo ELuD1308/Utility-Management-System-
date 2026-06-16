@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bills - Utility International</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/web/dashboard" class="nav-logo">Utility International</a>
+            <div class="nav-menu">
+                <a href="/web/profile" class="nav-link">Profile</a>
+                <a href="/web/bills" class="nav-link active">Bills</a>
+                <a href="/web/payments" class="nav-link">Payments</a>
+                <button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h2>My Bills</h2>
+        </div>
+
+        <div id="message" class="alert alert-error" style="display:none;"></div>
+        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+
+        <div id="billsContainer" class="bills-list">
+            <p>Loading bills...</p>
+        </div>
+    </div>
+
+    <script th:src="@{/js/api.js}"></script>
+    <script th:src="@{/js/bills.js}"></script>
+</body>
+</html>

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class UtilityUsageResponse {
 
     private Long id;
-    private LocalDate readingDate;
+    private LocalDate usageDate;
     private Integer unitsConsumed;
     private Integer meterReadingStart;
     private Integer meterReadingEnd;
